@@ -1,0 +1,67 @@
+body {
+	background-color: lightgrey;
+}
+
+#char_select1 {
+	position: fixed;
+	margin-right: 10px;
+	text-align: center;
+}
+#char_select2 {
+	position: fixed;
+	margin-right: 10px;
+	left: 140px;
+	text-align: center;
+}
+#char_select3 {
+	position: fixed;
+	margin-right: 10px;
+	left: 305px;
+	text-align: center;
+}
+#char_select4 {
+	position: fixed;
+	margin-right: 10px;
+	left: 420px;
+	text-align: center;
+}
+#char {
+	position: fixed;
+	width: 100px;
+	top: 210px;
+}
+#target1 {
+	position: fixed;
+	margin-right: 10px;
+	text-align: center;
+	top: 230px;
+}
+#target2 {
+	position: fixed;
+	margin-right: 10px;
+	text-align: center;
+	top: 230px;
+	left: 175px;
+}
+#target3 {
+	position: fixed;
+	margin-right: 10px;
+	text-align: center;
+	top: 230px;
+	left: 305px;
+}
+#enemies {
+	position: fixed;
+	width: 200px;
+	top: 430px;
+}
+#command {
+	position: fixed;
+	width: 250px;
+	top: 450px;
+}
+#fight {
+	position: fixed;
+	text-align: center;
+	top: 475px;
+}

@@ -9,6 +9,47 @@ h1 {
 	top: 2px;
 }
 
+#shop {
+	position: fixed;
+	top: 20px;
+	left: 175px;
+}
+#potion {
+	position: fixed;
+	top: 40px;
+	left: 175px;
+}
+#potion_buy {
+	position: fixed;
+	top: 60px;
+	left: 175px;
+}
+#special {
+	position: fixed;
+	top: 80px;
+	left: 175px;
+}
+#special_buy {
+	position: fixed;
+	top: 100px;
+	left: 175px;
+}
+#stats {
+	position: fixed;
+	top: 20px;
+	left: 550px;
+	white-space: pre-wrap;
+}
+#gold{
+	position: fixed;
+	top: 120px;
+	left: 175px;
+}
+#gold_amt{
+	position: fixed;
+	top: 120px;
+	left: 215px;
+}
 #char_select1 {
 	position: fixed;
 	top: 20px;
@@ -44,21 +85,18 @@ h1 {
 	position: fixed;
 	text-align: center;
 	top: 230px;
-	left: 10px;
 }
 #target2 {
 	position: fixed;
 	margin-right: 10px;
 	text-align: center;
 	top: 230px;
-	left: 185px;
 }
 #target3 {
 	position: fixed;
 	margin-right: 10px;
 	text-align: center;
 	top: 230px;
-	left: 315px;
 }
 #enemies {
 	position: fixed;

@@ -17,6 +17,8 @@ $(document).ready(function() {
 
 	var thiefDmg = -1;
 
+	var clericDmg = 0;
+
 	var fightingWarrior = false;
 
 	var fightingMage = false;
@@ -247,6 +249,89 @@ target3.bind("click", fight3);
 $('#attack_btn').bind("click", attackFunc);
 $('#special_btn').bind("click", specialFunc);
 $('#escape_btn').bind("click", escapeFunc);
+$('#potion_buy').bind("click", potionPurchase);
+$('#special_buy').bind("click", specialPurchase);
+
+function potionPurchase (e) {
+	if (attackingWarrior || attackingMage || attackingThief || attackingCleric) {
+		$("#text1").text("You can't buy that while in battle!");
+		$("#text2").text("");
+	}
+	else if (warriorStore && goldTotal >= 25) {
+		goldTotal -= 25;
+		health.warrior += 25;
+		if (health.warrior >= 200) {
+			health.warrior = 200;
+		}
+		char1.empty();
+		char1.append("Warrior");
+		char1.append('<img src="assets/images/warrior.png" height="150px">');
+		char1.append(health.warrior);
+		$("#gold_amt").text(goldTotal);
+		$("#text1").text("Warrior drank a potion and recovered 25 health!");
+		$("#text2").text("");
+	}
+	else if (mageStore && goldTotal >= 25) {
+		goldTotal -= 25;
+		health.mage += 25;
+		if (health.mage >= 180) {
+			health.mage = 180;
+		}
+		char2.empty();
+		char2.append("Mage");
+		char2.append('<img src="assets/images/mage.png" height="150px">');
+		char2.append(health.mage);
+		$("#gold_amt").text(goldTotal);
+		$("#text1").text("Mage drank a potion and recovered 25 health!");
+		$("#text2").text("");
+	}
+	else if (thiefStore && goldTotal >= 25) {
+		goldTotal -= 25;
+		health.thief += 25;
+		if (health.thief >= 150) {
+			health.thief = 150;
+		}
+		char3.empty();
+		char3.append("Thief");
+		char3.append('<img src="assets/images/thief.png" height="150px">');
+		char3.append(health.thief);
+		$("#gold_amt").text(goldTotal);
+		$("#text1").text("Thief drank a potion and recovered 25 health!");
+		$("#text2").text("");
+	}
+	else if (clericStore && goldTotal >= 25) {
+		goldTotal -= 25;
+		health.cleric += 25;
+		if (health.cleric >= 120) {
+			health.cleric = 120;
+		}
+		char4.empty();
+		char4.append("Cleric");
+		char4.append('<img src="assets/images/cleric.png" height="150px">');
+		char4.append(health.cleric);
+		$("#gold_amt").text(goldTotal);
+		$("#text1").text("Cleric drank a potion and recovered 25 health!");
+		$("#text2").text("");
+	}
+	else if (goldTotal < 25) {
+		$("#text1").text("Not enough gold!");
+		$("#text2").text("");
+	}
+}
+
+function specialPurchase (e) {
+	if (attackingWarrior || attackingMage || attackingThief || attackingCleric) {
+		$("#text1").text("You can't buy that while in battle!");
+		$("#text2").text("");
+	}
+	else if ((warriorStore || mageStore || thiefStore || clericStore) && goldTotal >= 35) {
+		goldTotal -= 35;
+		specialCounter++;
+		$("#gold_amt").text(goldTotal);
+		$("#text1").text("You gained an additional special!");
+		$("#text2").text("");
+	}
+}
 
 // can only fight mage or warrior in fight1
 // can only fight thief or mage in fight2
@@ -466,6 +551,54 @@ function attackFunc (e) {
 		$("#text2").text("Cleric counter-attacked for " + compAtk + " damage.");
 	}
 	//cleric's attack function below
+	else if (attackingWarrior && clericStore) {
+		compAtk = Math.floor((Math.random() * 20) + 5);
+		health.cleric -= compAtk;
+		clericDmg = clericDmg+3;
+		health.warrior -= clericDmg;
+		char4.empty();
+		char4.append("Cleric");
+		char4.append('<img src="assets/images/cleric.png" height="150px">');
+		char4.append(health.cleric);
+		fight.empty();
+		fight.append("Warrior");
+		fight.append('<img src="assets/images/warrior.png" height="150px">');
+		fight.append(health.warrior);
+		$("#text1").text("Cleric attacked for " + clericDmg + " damage.");
+		$("#text2").text("Warrior counter-attacked for " + compAtk + " damage.");
+	}
+	else if (attackingMage && clericStore) {
+		compAtk = Math.floor((Math.random() * 15) + 8);
+		health.cleric -= compAtk;
+		clericDmg = clericDmg+3;
+		health.mage -= clericDmg;
+		char4.empty();
+		char4.append("Cleric");
+		char4.append('<img src="assets/images/cleric.png" height="150px">');
+		char4.append(health.cleric);
+		fight.empty();
+		fight.append("Mage");
+		fight.append('<img src="assets/images/mage.png" height="150px">');
+		fight.append(health.mage);
+		$("#text1").text("Cleric attacked for " + clericDmg + " damage.");
+		$("#text2").text("Mage counter-attacked for " + compAtk + " damage.");
+	}
+	else if (attackingThief && clericStore) {
+		compAtk = Math.floor((Math.random() * 30) + 10);
+		health.cleric -= compAtk;
+		clericDmg = clericDmg+3;
+		health.thief -= clericDmg;
+		char4.empty();
+		char4.append("Cleric");
+		char4.append('<img src="assets/images/cleric.png" height="150px">');
+		char4.append(health.cleric);
+		fight.empty();
+		fight.append("Thief");
+		fight.append('<img src="assets/images/thief.png" height="150px">');
+		fight.append(health.thief);
+		$("#text1").text("Cleric attacked for " + clericDmg + " damage.");
+		$("#text2").text("Thief counter-attacked for " + compAtk + " damage.");
+	}
 	deadCheck();
 }
 
@@ -488,7 +621,7 @@ function specialFunc (e) {
 		fight.append('<img src="assets/images/mage.png" height="150px">');
 		fight.append(health.mage);
 		$("#text1").text("Warrior blocked the Mage's attack!");
-		$("#text2").text("Countered for " + specialAtk + " damage! (" + specialCounter + " specials remain)");
+		$("#text2").text("Countered for " + specialAtk + " damage! (" + specialCounter + " special(s) remain)");
 	}
 	else if (attackingThief && warriorStore && specialCounter > 0) {
 		specialAtk = Math.floor((Math.random() * 25) + 25);
@@ -499,7 +632,7 @@ function specialFunc (e) {
 		fight.append('<img src="assets/images/thief.png" height="150px">');
 		fight.append(health.thief);
 		$("#text1").text("Warrior blocked the Thief's attack!");
-		$("#text2").text("Countered for " + specialAtk + " damage! (" + specialCounter + " specials remain)");
+		$("#text2").text("Countered for " + specialAtk + " damage! (" + specialCounter + " special(s) remain)");
 	}
 	else if (attackingCleric && warriorStore && specialCounter > 0) {
 		specialAtk = Math.floor((Math.random() * 25) + 25);
@@ -510,7 +643,7 @@ function specialFunc (e) {
 		fight.append('<img src="assets/images/cleric.png" height="150px">');
 		fight.append(health.cleric);
 		$("#text1").text("Warrior blocked the Cleric's attack!");
-		$("#text2").text("Countered for " + specialAtk + " damage! (" + specialCounter + " specials remain)");
+		$("#text2").text("Countered for " + specialAtk + " damage! (" + specialCounter + " special(s) remain)");
 	}
 	//mage's special functions below
 	else if (attackingWarrior && mageStore && specialCounter > 0) {
@@ -527,7 +660,7 @@ function specialFunc (e) {
 		fight.append("Warrior");
 		fight.append('<img src="assets/images/warrior.png" height="150px">');
 		fight.append(health.warrior);
-		$("#text1").text("Mage cast fireball for " + specialAtk + " damage! (" + specialCounter + " specials remain)");
+		$("#text1").text("Mage cast fireball for " + specialAtk + " damage! (" + specialCounter + " special(s) remain)");
 		$("#text2").text("Warrior counter-attacked for " + compAtk + " damage.");
 	}
 	else if (attackingThief && mageStore && specialCounter > 0) {
@@ -544,7 +677,7 @@ function specialFunc (e) {
 		fight.append("Thief");
 		fight.append('<img src="assets/images/thief.png" height="150px">');
 		fight.append(health.thief);
-		$("#text1").text("Mage cast fireball for " + specialAtk + " damage! (" + specialCounter + " specials remain)");
+		$("#text1").text("Mage cast fireball for " + specialAtk + " damage! (" + specialCounter + " special(s) remain)");
 		$("#text2").text("Thief counter-attacked for " + compAtk + " damage.");
 	}
 	else if (attackingCleric && mageStore && specialCounter > 0) {
@@ -561,8 +694,84 @@ function specialFunc (e) {
 		fight.append("Cleric");
 		fight.append('<img src="assets/images/cleric.png" height="150px">');
 		fight.append(health.cleric);
-		$("#text1").text("Mage cast fireball for " + specialAtk + " damage! (" + specialCounter + " specials remain)");
+		$("#text1").text("Mage cast fireball for " + specialAtk + " damage! (" + specialCounter + " special(s) remain)");
 		$("#text2").text("Cleric counter-attacked for " + compAtk + " damage.");
+	}
+	//thief's special function below
+	else if (attackingWarrior && thiefStore && specialCounter > 0) {
+		compAtk = Math.floor((Math.random() * 12) + 3);
+		health.thief -= compAtk;
+		specialAtk = Math.floor((Math.random() * 5) + 1);
+		health.warrior -= specialAtk;
+		specialCounter--;
+		goldRdm = Math.floor((Math.random() * 12) + 5);
+		goldTotal += goldRdm;
+		char3.empty();
+		char3.append("Thief");
+		char3.append('<img src="assets/images/thief.png" height="150px">');
+		char3.append(health.thief);
+		fight.empty();
+		fight.append("Warrior");
+		fight.append('<img src="assets/images/warrior.png" height="150px">');
+		fight.append(health.warrior);
+		$("#gold_amt").text(goldTotal);
+		$("#text1").text("Thief swiped at the warrior's pockets dealing " + specialAtk + " damage! Stole " + goldRdm + " gold in the process! (" + specialCounter + " special(s) remain)");
+		$("#text2").text("Warrior counter-attacked for " + compAtk + " damage.");
+	}
+	else if (attackingMage && thiefStore && specialCounter > 0) {
+		compAtk = Math.floor((Math.random() * 12) + 3);
+		health.thief -= compAtk;
+		specialAtk = Math.floor((Math.random() * 5) + 1);
+		health.mage -= specialAtk;
+		specialCounter--;
+		goldRdm = Math.floor((Math.random() * 12) + 5);
+		goldTotal += goldRdm;
+		char3.empty();
+		char3.append("Thief");
+		char3.append('<img src="assets/images/thief.png" height="150px">');
+		char3.append(health.thief);
+		fight.empty();
+		fight.append("Mage");
+		fight.append('<img src="assets/images/mage.png" height="150px">');
+		fight.append(health.mage);
+		$("#gold_amt").text(goldTotal);
+		$("#text1").text("Thief swiped at the mage's pockets dealing " + specialAtk + " damage! Stole " + goldRdm + " gold in the process! (" + specialCounter + " special(s) remain)");
+		$("#text2").text("Mage counter-attacked for " + compAtk + " damage.");
+	}
+	else if (attackingCleric && thiefStore && specialCounter > 0) {
+		compAtk = Math.floor((Math.random() * 12) + 3);
+		health.thief -= compAtk;
+		specialAtk = Math.floor((Math.random() * 5) + 1);
+		health.cleric -= specialAtk;
+		specialCounter--;
+		goldRdm = Math.floor((Math.random() * 12) + 5);
+		goldTotal += goldRdm;
+		char3.empty();
+		char3.append("Thief");
+		char3.append('<img src="assets/images/thief.png" height="150px">');
+		char3.append(health.thief);
+		fight.empty();
+		fight.append("Cleric");
+		fight.append('<img src="assets/images/cleric.png" height="150px">');
+		fight.append(health.cleric);
+		$("#gold_amt").text(goldTotal);
+		$("#text1").text("Thief swiped at the cleric's pockets dealing " + specialAtk + " damage! Stole " + goldRdm + " gold in the process! (" + specialCounter + " special(s) remain)");
+		$("#text2").text("Cleric counter-attacked for " + compAtk + " damage.");
+	}
+	//Cleric's special function below
+	else if ((attackingWarrior || attackingMage || attackingThief) && clericStore && specialCounter > 0) {
+		specialAtk = Math.floor((Math.random() * 50) + 35);
+		health.cleric += specialAtk;
+		specialCounter--;
+		if (health.cleric >= 120) {
+			health.cleric = 120;
+		}
+		char4.empty();
+		char4.append("Cleric");
+		char4.append('<img src="assets/images/cleric.png" height="150px">');
+		char4.append(health.cleric);
+		$("#text1").text("Cleric used heal to recover " + specialAtk + " damage! (" + specialCounter + " special(s) remain)");
+		$("#text2").text("");
 	}
 	else {
 		$("#text1").text("You are out of specials!");

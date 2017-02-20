@@ -63,6 +63,8 @@ $(document).ready(function() {
 
 	var warriorMiss = Math.floor((Math.random() * 5) + 0);
 
+	var restart = $('<input type="button" value="Restart"/>');
+
 	var char1 = $('#char_select1');
 
 	var char2 = $('#char_select2');
@@ -840,21 +842,18 @@ function deadCheck () {
 		$("#text2").text("Gained " + goldRdm + " gold.");
 		fightsTrue();
 	}
-	if ((warriorStore) && (health.warrior <= 0)) {
-		setTimeout(function(){ alert("You lose!");
-		location.reload();}, 100);
-	}
-	if ((mageStore) && (health.mage <= 0)) {
-		setTimeout(function(){ alert("You lose!");
-		location.reload();}, 100);
-	}
-	if ((thiefStore) && (health.thief <= 0)) {
-		setTimeout(function(){ alert("You lose!");
-		location.reload();}, 100);
-	}
-	if ((clericStore) && (health.cleric <= 0)) {
-		setTimeout(function(){ alert("You lose!");
-		location.reload();}, 100);
+	if ((warriorStore && (health.warrior <= 0)) || (mageStore && (health.mage <= 0)) || (thiefStore && (health.thief <= 0)) || (clericStore && (health.cleric <= 0))) {
+		$("#text1").text("You have been defeated!");
+		$("#text2").text("");
+		$("#text2").append(restart);
+		target1.off();
+		target2.off();
+		target3.off();
+		$('#attack_btn').off();
+		$('#special_btn').off();
+		$('#escape_btn').off();
+		$('#potion_buy').off();
+		$('#special_buy').off();
 	}
 }
 
@@ -864,8 +863,17 @@ function fightsTrue () {
 	fightingThief = true;
 	fightingCleric = true;
 	if (enemies === 0) {
-		setTimeout(function(){ alert("You Win!");
-		location.reload();}, 100);
+		$("#text1").text("You are victorious!");
+		$("#text2").text("");
+		$("#text2").append(restart);
+		target1.off();
+		target2.off();
+		target3.off();
+		$('#attack_btn').off();
+		$('#special_btn').off();
+		$('#escape_btn').off();
+		$('#potion_buy').off();
+		$('#special_buy').off();
 	}
 }
 
@@ -875,5 +883,9 @@ function fightsFalse () {
 	fightingThief = false;
 	fightingCleric = false;
 }
+
+restart.on("click", function(){
+	location.reload();
+});
 
 })

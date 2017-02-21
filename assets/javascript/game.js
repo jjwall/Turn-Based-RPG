@@ -844,16 +844,7 @@ function deadCheck () {
 	}
 	if ((warriorStore && (health.warrior <= 0)) || (mageStore && (health.mage <= 0)) || (thiefStore && (health.thief <= 0)) || (clericStore && (health.cleric <= 0))) {
 		$("#text1").text("You have been defeated!");
-		$("#text2").text("");
-		$("#text2").append(restart);
-		target1.off();
-		target2.off();
-		target3.off();
-		$('#attack_btn').off();
-		$('#special_btn').off();
-		$('#escape_btn').off();
-		$('#potion_buy').off();
-		$('#special_buy').off();
+		restartFunc();
 	}
 }
 
@@ -864,16 +855,7 @@ function fightsTrue () {
 	fightingCleric = true;
 	if (enemies === 0) {
 		$("#text1").text("You are victorious!");
-		$("#text2").text("");
-		$("#text2").append(restart);
-		target1.off();
-		target2.off();
-		target3.off();
-		$('#attack_btn').off();
-		$('#special_btn').off();
-		$('#escape_btn').off();
-		$('#potion_buy').off();
-		$('#special_buy').off();
+		restartFunc();
 	}
 }
 
@@ -883,6 +865,25 @@ function fightsFalse () {
 	fightingThief = false;
 	fightingCleric = false;
 }
+
+var restartFunc = (function() {
+    var executed = false;
+    return function () {
+        if (!executed) {
+            executed = true;
+            $("#text2").text("");
+			$("#text2").append(restart);
+			target1.off();
+			target2.off();
+			target3.off();
+			$('#attack_btn').off();
+			$('#special_btn').off();
+			$('#escape_btn').off();
+			$('#potion_buy').off();
+			$('#special_buy').off();
+        }
+    };
+})();
 
 restart.on("click", function(){
 	location.reload();

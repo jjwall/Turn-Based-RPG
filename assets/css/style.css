@@ -6,48 +6,77 @@ body {
 h1 {
 	position: fixed;
 	left: 10px;
-	top: 2px;
+	top: 1px;
+	background-color: turquoise;
+	text-align: center;
+	color: white;
+	border-style: solid;
+	border-top-width: 2px;
+	border-left-width: 2px;
+	border-color: white;
+	width: 150px;
 }
 
-#shop {
+#shop_block {
+	background-color: turquoise;
+	text-align: center;
+	color: white;
+	border-style: solid;
+	border-top-width: 2px;
+	border-left-width: 2px;
+	border-color: white;
 	position: fixed;
 	top: 20px;
+	left: 170px;
+	width: 125px;
+	height: 187px;
+}
+#shop {
+	position: fixed;
+	top: 25px;
 	left: 175px;
 }
 #potion {
 	position: fixed;
-	top: 40px;
+	top: 45px;
 	left: 175px;
 }
 #potion_buy {
 	position: fixed;
-	top: 60px;
+	top: 65px;
 	left: 175px;
 }
 #special {
 	position: fixed;
-	top: 80px;
+	top: 85px;
 	left: 175px;
 }
 #special_buy {
 	position: fixed;
-	top: 100px;
+	top: 105px;
 	left: 175px;
 }
 #stats {
 	position: fixed;
+	background-color: turquoise;
+	text-align: center;
+	color: white;
+	border-top-style: solid;
+	border-width: 2px;
+	border-color: white;
+	height: 187px;
 	top: 20px;
 	left: 550px;
 	white-space: pre-wrap;
 }
 #gold{
 	position: fixed;
-	top: 120px;
+	top: 125px;
 	left: 175px;
 }
 #gold_amt{
 	position: fixed;
-	top: 120px;
+	top: 125px;
 	left: 215px;
 }
 #char_select1 {
@@ -77,9 +106,16 @@ h1 {
 }
 #char {
 	position: fixed;
-	width: 100px;
+	width: 150px;
 	top: 210px;
 	left: 10px;
+	background-color: turquoise;
+	text-align: center;
+	color: white;
+	border-style: solid;
+	border-bottom-width: 2px;
+	border-left-width: 2px;
+	border-color: white;
 }
 #target1 {
 	position: fixed;
@@ -100,9 +136,16 @@ h1 {
 }
 #enemies {
 	position: fixed;
-	width: 200px;
-	top: 430px;
+	width: 410px;
+	top: 421px;
 	left: 10px;
+	background-color: turquoise;
+	text-align: center;
+	color: white;
+	border-style: solid;
+	border-bottom-width: 2px;
+	border-left-width: 2px;
+	border-color: white;
 }
 #command {
 	position: fixed;

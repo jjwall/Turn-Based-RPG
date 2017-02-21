@@ -104,25 +104,25 @@ $(document).ready(function() {
 	$('#gold_amt').text(goldTotal);
 
 	char1.mouseenter(function(){
-		$('#stats').text("Warrior Stats:\nHit Points: 200\nBase Attack: 4\nAttack Boost: +4\nDefense: 25\nSpecial: Counter Attack");
+		$('#stats').text("Warrior Stats:\nHit Points: 200\nBase Attack: 4\nAttack Boost: +4\nDefense: 25\nDifficulty: *\nSpecial: Counter Attack\n(Deflects incoming strikes and\ncounter-attacks for a consistent\nmedium to high amount of damage)");
 	});
 	char1.mouseleave(function(){
 		$('#stats').text("");
 	});
 	char2.mouseenter(function(){
-		$('#stats').text("Mage Stats:\nHit Points: 180\nBase Attack: 10\nAttack Boost: +8\nDefense: 5\nSpecial: Fireball");
+		$('#stats').text("Mage Stats:\nHit Points: 180\nBase Attack: 10\nAttack Boost: +8\nDefense: 10\nDifficulty: **\nSpecial: Fireball\n(Launches a firey attack that\ndeals an inconsistent low to high\namount of damage. Still\n susceptible to attacks while casting)");
 	});
 	char2.mouseleave(function(){
 		$('#stats').text("");
 	});
 	char3.mouseenter(function(){
-		$('#stats').text("Thief Stats:\nHit Points: 150\nBase Attack: 5\nAttack Boost: +6\nDefense: 12\nSpecial: Swiping Blow");
+		$('#stats').text("Thief Stats:\nHit Points: 150\nBase Attack: 5\nAttack Boost: +6\nDefense: 12\nDifficulty: ****\nSpecial: Swiping Blow\n(A nimble attack that deals\na consistent amount of low damage\nwhile stealing gold at the same time)");
 	});
 	char3.mouseleave(function(){
 		$('#stats').text("");
 	});
 	char4.mouseenter(function(){
-		$('#stats').text("Cleric Stats:\nHit Points: 120\nBase Attack: 3\nAttack Boost: +3\nDefense: 10\nSpecial: Heal");
+		$('#stats').text("Cleric Stats:\nHit Points: 120\nBase Attack: 3\nAttack Boost: +3\nDefense: 5\nDifficulty: ***\nSpecial: Heal\n(A flash of light that recovers\na medium to high amout of damage.\nComes so quick the enemy won't\nhave time to strike)");
 	});
 	char4.mouseleave(function(){
 		$('#stats').text("");
@@ -148,6 +148,8 @@ $(document).ready(function() {
 		target3.append('<img src="assets/images/cleric.png" height="150px">');
 		target3.append(health.cleric);
 
+
+		$('#stats').css('left', '295px');
 		target1.css('background', 'white').css('border', "solid 2px orange").css('width', '150px').css('left', '10px');
 		target2.css('background', 'white').css('border', "solid 2px orange").css('width', '95px').css('left', '180px');
 		target3.css('background', 'white').css('border', "solid 2px orange").css('width', '105px').css('left', '295px');
@@ -177,6 +179,7 @@ $(document).ready(function() {
 		target3.append('<img src="assets/images/cleric.png" height="150px">');
 		target3.append(health.cleric);
 
+		$('#stats').css('left', '295px');
 		target1.css('background', 'white').css('border', "solid 2px orange").css('width', '115px').css('left', '10px');
 		target2.css('background', 'white').css('border', "solid 2px orange").css('width', '95px').css('left', '145px');
 		target3.css('background', 'white').css('border', "solid 2px orange").css('width', '105px').css('left', '260px');
@@ -206,6 +209,7 @@ $(document).ready(function() {
 		target3.append('<img src="assets/images/cleric.png" height="150px">');
 		target3.append(health.cleric);
 
+		$('#stats').css('left', '295px');
 		target1.css('background', 'white').css('border', "solid 2px orange").css('width', '115px').css('left', '10px');
 		target2.css('background', 'white').css('border', "solid 2px orange").css('width', '150px').css('left', '145px');
 		target3.css('background', 'white').css('border', "solid 2px orange").css('width', '105px').css('left', '315px');
@@ -235,6 +239,7 @@ $(document).ready(function() {
 		target3.append('<img src="assets/images/thief.png" height="150px">');
 		target3.append(health.thief);
 
+		$('#stats').css('left', '295px');
 		target1.css('background', 'white').css('border', "solid 2px orange").css('width', '115px').css('left', '10px');
 		target2.css('background', 'white').css('border', "solid 2px orange").css('width', '150px').css('left', '145px');
 		target3.css('background', 'white').css('border', "solid 2px orange").css('width', '105px').css('left', '315px');
